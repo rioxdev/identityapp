@@ -1,0 +1,10 @@
+bin/
+/bin
+obj/
+/obj
+bin
+obj
+.usr
+.user
+.vs
+.vs/

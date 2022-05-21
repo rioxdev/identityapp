@@ -1,0 +1,54 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace IdentityApp.Models
+{
+    public class ProductDbContext : DbContext
+    {
+        public DbSet<Product> Products { get; set; }
+
+        public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Product>().HasData(
+                new Product
+                {
+                    Id = 1,
+                    Name = "Kayak",
+                    Category = "Watersports",
+                    Price = 275
+                },
+
+                new Product
+                {
+                    Id = 2,
+                    Name = "Lifejacket",
+                    Category = "Watersports",
+                    Price = 48.95m
+                },
+
+                new Product
+                {
+                    Id = 3,
+                    Name = "Soccer Ball",
+                    Category = "Soccer",
+                    Price = 19.50m
+                },
+
+                new Product
+                {
+                    Id = 4,
+                    Name = "Corner Flags",
+                    Category = "Soccer",
+                    Price = 34.95m
+                }
+
+                );
+        }
+
+
+    }
+}

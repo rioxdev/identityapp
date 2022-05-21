@@ -1,0 +1,44 @@
+﻿@model List<Product>
+
+@{
+}
+
+<h4 class="btn-primary text-white text-center"> MVC Level 3 - Admin</h4>
+
+<div class="p-2">
+    <table class="table table-sm table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Category</td>
+                <td class="text-right">Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product p in Model.OrderBy(p => p.Id))
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Name</td>
+                    <td>@p.Category</td>
+                    <td>@p.Price.ToString("F2")</td>
+                    <td class="text-center">
+                        <form method="post">
+                            <a class="btn btn-sm btn-warning" asp-action="Edit"
+                           asp-route-id="@p.Id">Edit</a>
+
+                            <button class="btn btn-sm btn-danger"
+                                asp-action="Delete" asp-route-id="@p.Id">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="btn btn-primary mx-2" asp-action="Create">Create</a>
+</div>
