@@ -5,10 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using IdentityApp.Services;
 
 namespace IdentityApp
 {
@@ -28,6 +32,22 @@ namespace IdentityApp
             services.AddRazorPages();
             services.AddDbContext<ProductDbContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("IdentityApp")); });
             services.AddHttpsRedirection(opt => { opt.HttpsPort = 443540; });
+
+            services.AddDbContext<IdentityDbContext>(opts =>
+            {
+                opts.UseSqlServer( Configuration.GetConnectionString("IdentityConnection"),  opts => opts.MigrationsAssembly("IdentityApp"));
+            });
+
+            services.AddScoped<IEmailSender, GmailEmailSender>();
+            
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.AddAuthentication()
+                .AddGoogle(opt =>
+                {
+                    opt.ClientId = Configuration["Google:ClientId"];
+                    opt.ClientSecret = Configuration["Google:ClientSecret"];
+                });
 
         }
 
@@ -49,6 +69,8 @@ namespace IdentityApp
 
             app.UseRouting();
 
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

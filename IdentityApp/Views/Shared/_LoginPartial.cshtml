@@ -1,0 +1,14 @@
+﻿<nav class="nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-area="Identity" asp-page="/account/manage/index" class="nav-link bg-secondary text-white">@User.Identity.Name</a>
+
+        <a asp-area="Identity" asp-page="/account/logout" class="nav-link bg-secondary text-white">Logout</a>
+    }
+    else
+    {
+        <a asp-area="Identity" asp-page="/account/login" class="nav-link bg-secondary text-white">Login/Register</a>
+    }
+
+</nav>
+
