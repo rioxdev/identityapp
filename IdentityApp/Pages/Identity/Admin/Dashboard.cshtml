@@ -1,0 +1,44 @@
+﻿@page
+@model IdentityApp.Pages.Identity.Admin.DashboardModel
+@{
+    ViewData["workflow"] = "Dashboard";
+    ViewData["showNav"] = true;
+}
+
+
+<table class="table table-sm">
+    <tbody>
+        <tr>
+            <th>
+                Users in store
+            </th>
+            <td>
+                @Model.UsersCount
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Unconfirmed accounts
+            </th>
+            <td>
+                @Model.UsersUnconfirmed
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Locked out users
+            </th>
+            <td>
+                @Model.UsersLockedout
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Users with two-factor enabled
+            </th>
+            <td>
+                @Model.UsersTwoFactor
+            </td>
+        </tr>
+    </tbody>
+</table>
