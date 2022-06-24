@@ -1,10 +1,11 @@
-﻿@page
+﻿@page "/identity/admin"
 @model IdentityApp.Pages.Identity.Admin.DashboardModel
 @{
     ViewData["workflow"] = "Dashboard";
     ViewData["showNav"] = true;
 }
 
+<div asp-validation-summary="All" class="text-danger m-2"></div>
 
 <table class="table table-sm">
     <tbody>
@@ -42,3 +43,7 @@
         </tr>
     </tbody>
 </table>
+
+<form method="post">
+    <button class="btn btn-secondary" type="submit">Seed database</button>
+</form>

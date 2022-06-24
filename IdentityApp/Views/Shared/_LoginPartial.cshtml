@@ -1,7 +1,7 @@
 ﻿<nav class="nav">
     @if (User.Identity.IsAuthenticated)
     {
-        <a asp-area="Identity" asp-page="/account/manage/index" class="nav-link bg-secondary text-white">@User.Identity.Name</a>
+        <a  asp-page="/identity/index" class="nav-link bg-secondary text-white">@User.Identity.Name</a>
 
         <a asp-area="Identity" asp-page="/account/logout" class="nav-link bg-secondary text-white">Logout</a>
     }
