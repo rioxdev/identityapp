@@ -3,11 +3,12 @@
     {
         <a  asp-page="/identity/index" class="nav-link bg-secondary text-white">@User.Identity.Name</a>
 
-        <a asp-area="Identity" asp-page="/account/logout" class="nav-link bg-secondary text-white">Logout</a>
+        <a asp-page="/Identity/SignOut" class="nav-link bg-secondary text-white">Sign Out</a>
     }
     else
     {
-        <a asp-area="Identity" asp-page="/account/login" class="nav-link bg-secondary text-white">Login/Register</a>
+        <a asp-page="/Identity/SignIn" class="nav-link bg-secondary text-white">
+            Sign In/Register</a>
     }
 
 </nav>

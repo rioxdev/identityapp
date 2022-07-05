@@ -46,9 +46,7 @@
                 @if (!string.IsNullOrEmpty(Model.Callback))
                 {
                     <td class="text-center">
-                        <a asp-page="@Model.Callback"
-                   asp-route-id="@user.Id"
-                   class="btn btn-sm btn-secondary">
+                        <a asp-page="@Model.Callback"   asp-route-id="@user.Id"   class="btn btn-sm btn-secondary">
                             @Model.Callback
                         </a>
                     </td>

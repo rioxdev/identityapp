@@ -1,0 +1,25 @@
+﻿@page
+@model IdentityApp.Pages.Identity.SignOutModel
+@{
+    ViewData["showNav"] = false;
+    ViewData["banner"] = "Sign out";
+    Layout = "_Layout";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form method="post">
+        <div class="text-center">
+            <h6>Click the button to sign out of the app</h6>
+            <button type="submit" class="btn btn-secondary">Sign out</button>
+        </div>
+    </form>
+}
+else
+{
+    <div class="text-center">
+        <h6>You are signed out of the app</h6>
+        <a asp-page="SignIn" asp-route-returnUrl="" class="btn btn-secondary">OK</a>
+    </div>
+}
+

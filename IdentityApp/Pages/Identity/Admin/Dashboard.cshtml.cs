@@ -35,7 +35,7 @@ namespace IdentityApp.Pages.Identity.Admin
         public async Task<IActionResult> OnPostAsync()
         {
 
-            foreach(IdentityUser existingUser in UserManager.Users.ToList())
+            foreach (IdentityUser existingUser in UserManager.Users.ToList())
             {
                 IdentityResult result = await UserManager.DeleteAsync(existingUser);
                 result.Process(ModelState);
@@ -51,7 +51,12 @@ namespace IdentityApp.Pages.Identity.Admin
                 };
 
                 IdentityResult result = await UserManager.CreateAsync(user);
-                result.Process(ModelState);
+
+                if (result.Process(ModelState))
+                {
+                    result = await UserManager.AddPasswordAsync(user, "PassRiox2022!");
+                    result.Process(ModelState);
+                }
             }
 
             if (ModelState.IsValid)

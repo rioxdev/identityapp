@@ -40,7 +40,9 @@ namespace IdentityApp
 
             services.AddScoped<IEmailSender, GmailEmailSender>();
             
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddAuthentication()
                 .AddGoogle(opt =>
@@ -49,6 +51,15 @@ namespace IdentityApp
                     opt.ClientSecret = Configuration["Google:ClientSecret"];
                 });
 
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.LoginPath = "/Identity/SignIn";
+                opt.LogoutPath = "/Identity/SignOut";
+                opt.AccessDeniedPath = "/Identity/Forbidden";
+            });
+
+            services.AddScoped<TokenUrlEncoderUrlService>();
+            services.AddScoped<IdentityEmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
