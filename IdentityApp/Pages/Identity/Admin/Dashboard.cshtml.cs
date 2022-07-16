@@ -19,7 +19,9 @@ namespace IdentityApp.Pages.Identity.Admin
         {
             "alice@example.com",
             "bob@example.com",
-            "charlie@example.com"
+            "charlie@example.com",
+            "rioxa11@yopmail.com",
+            "rioxdev@gmail.com"
         };
 
         public DashboardModel(UserManager<IdentityUser> userManager)

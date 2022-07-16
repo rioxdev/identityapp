@@ -13,14 +13,13 @@ namespace IdentityApp.Services
             message.Subject = subject;
             message.Body = htmlMessage;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("rioxdev@gmail.com");
+            message.From = new MailAddress("henrio.devops@outlook.fr");
             message.To.Add(new MailAddress(email));
 
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("rioxdev@gmail.com", "PassRiox2020!");
+            smtp.Credentials = new NetworkCredential("henrio.devops@outlook.fr", "PassRiox2022!!!");
             smtp.EnableSsl = true;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             smtp.Send(message);
 
