@@ -38,7 +38,7 @@ namespace IdentityApp
                 opts.UseSqlServer( Configuration.GetConnectionString("IdentityConnection"),  opts => opts.MigrationsAssembly("IdentityApp"));
             });
 
-            services.AddScoped<IEmailSender, GmailEmailSender>();
+            services.AddScoped<IEmailSender, ConsoleEmailSender>();
             
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
@@ -86,9 +86,7 @@ namespace IdentityApp
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapDefaultControllerRoute();
 
                 endpoints.MapRazorPages();
